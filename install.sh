@@ -6,7 +6,7 @@ DOTFILES_DIR="${HOME}/.dotfiles"
 link_files() {
 	pushd $HOME
 	
-	ln -sf ${DOTFILES_DIR}/emacs/emacs_config .emacs
+	ln -sf ${DOTFILES_DIR}/emacs/emacs .emacs
 
 	popd
 }
