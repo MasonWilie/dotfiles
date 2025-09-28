@@ -3,14 +3,13 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
-;; Install SLIME if not already installed
-(unless (package-installed-p 'slime)
+;; Install sly if not already installed
+(unless (package-installed-p 'sly)
   (package-refresh-contents)
-  (package-install 'slime))
+  (package-install 'sly))
 
-;; Configure SLIME
+;; Configure SBCL
 (setq inferior-lisp-program "sbcl")
-(setq slime-contribs '(slime-fancy))
 
 ;; Optional: Enable paredit for balanced parentheses
 (unless (package-installed-p 'paredit)
@@ -23,7 +22,6 @@
 (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
 (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
-(add-hook 'slime-repl-mode-hook       #'enable-paredit-mode)
 
 ;; Optional: Rainbow delimiters for colorful parentheses
 (unless (package-installed-p 'rainbow-delimiters)
@@ -35,7 +33,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(ace-window sly rainbow-delimiters paredit slime))
+ '(package-selected-packages '(ace-window sly rainbow-delimiters paredit))
  '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
