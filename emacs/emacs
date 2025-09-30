@@ -42,3 +42,14 @@
  ;; If there is more than one, they won't work right.
  '(font-lock-function-name-face ((t (:foreground "color-39"))))
  '(minibuffer-prompt ((t (:foreground "color-38")))))
+
+;; Disable backup files (those ending in ~)
+(setq make-backup-files nil)
+
+;; Disable auto-save files (those with # around the name)
+(setq auto-save-default nil)
+
+;; Disable lock files (those starting with .#)
+(setq create-lockfiles nil)
+
+
