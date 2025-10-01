@@ -52,4 +52,15 @@
 ;; Disable lock files (those starting with .#)
 (setq create-lockfiles nil)
 
+;; Add MELPA repository if you haven't already
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
 
+;; Install darcula-theme if not already installed
+(unless (package-installed-p 'darcula-theme)
+  (package-refresh-contents)
+  (package-install 'darcula-theme))
+
+;; Load the theme
+(load-theme 'darcula t)
