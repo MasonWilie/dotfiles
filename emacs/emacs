@@ -62,5 +62,8 @@
   (package-refresh-contents)
   (package-install 'darcula-theme))
 
+;; Install split-sequence
+(ql:quickload "split-sequence")
+
 ;; Load the theme
 (load-theme 'darcula t)
