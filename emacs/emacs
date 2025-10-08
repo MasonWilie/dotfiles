@@ -67,8 +67,14 @@
   (package-refresh-contents)
   (package-install 'darcula-theme))
 
-;; Install split-sequence
-(ql:quickload "split-sequence")
+#-quicklisp
+(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+                                       (user-homedir-pathname))))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)))
+
+;;; Optional: Set up useful defaults
+(setf *print-case* :downcase)  ; Print symbols in lowercase
 
 ;; Load the theme
 (load-theme 'darcula t)
