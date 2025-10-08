@@ -1,8 +1,3 @@
-
-;; Set up quick-lisp
-(load "quicklisp.lisp")
-(quicklisp-quickstart:install)
-
 ;; Add MELPA repository
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -33,48 +28,23 @@
   (package-install 'rainbow-delimiters))
 
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages '(ace-window sly rainbow-delimiters paredit))
- '(warning-suppress-types '((comp))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(font-lock-function-name-face ((t (:foreground "color-39"))))
- '(minibuffer-prompt ((t (:foreground "color-38")))))
 
-;; Disable backup files (those ending in ~)
+;; Disable backup files
 (setq make-backup-files nil)
-
-;; Disable auto-save files (those with # around the name)
 (setq auto-save-default nil)
-
-;; Disable lock files (those starting with .#)
 (setq create-lockfiles nil)
-
-;; Add MELPA repository if you haven't already
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
 
 ;; Install darcula-theme if not already installed
 (unless (package-installed-p 'darcula-theme)
   (package-refresh-contents)
   (package-install 'darcula-theme))
 
-#-quicklisp
-(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
-                                       (user-homedir-pathname))))
-  (when (probe-file quicklisp-init)
-    (load quicklisp-init)))
-
-;;; Optional: Set up useful defaults
-(setf *print-case* :downcase)  ; Print symbols in lowercase
-
 ;; Load the theme
 (load-theme 'darcula t)
+
+(custom-set-variables
+ '(package-selected-packages '(ace-window sly rainbow-delimiters paredit))
+ '(warning-suppress-types '((comp))))
+(custom-set-faces
+ '(font-lock-function-name-face ((t (:foreground "color-39"))))
+ '(minibuffer-prompt ((t (:foreground "color-38")))))

@@ -7,6 +7,7 @@ link_files() {
 	pushd $HOME
 	
 	ln -sf ${DOTFILES_DIR}/emacs/emacs .emacs
+	ln -sf ${DOTFILES_DIR}/lisp/sbclrc .sbclrc
 
 	popd
 }

@@ -1,0 +1,12 @@
+;;; Load Quicklisp
+#-quicklisp
+(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+                                       (user-homedir-pathname))))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)))
+
+;;; Set up useful defaults
+(setf *print-case* :downcase)  ; Print symbols in lowercase
+
+;;; Welcome message
+(format t "~%SBCL with Quicklisp loaded!~%~%")
