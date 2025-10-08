@@ -1,3 +1,9 @@
+
+;; Set up quick-lisp
+(load "quicklisp.lisp")
+(quicklisp-quickstart:install)
+(ql:add-to-init-file)
+
 ;; Add MELPA repository
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
