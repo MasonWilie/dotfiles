@@ -1,5 +1,5 @@
 # Install sbcl
-apt-get install -y sbcl
+sudo apt-get install -y sbcl
 
 # Install QuickLisp
 curl -O https://beta.quicklisp.org/quicklisp.lisp;
