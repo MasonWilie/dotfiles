@@ -45,6 +45,8 @@ main() {
 
 	git clone $DOTFILES_URL $DOTFILES_DIR
 
+	apt-get install update
+
 	link_files
 	run_setups
 }
