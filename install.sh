@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -e
 sudo -v
 
 DOTFILES_URL="https://github.com/MasonWilie/dotfiles.git"
