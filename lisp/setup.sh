@@ -1,3 +1,3 @@
 # Install sbcl
-apt-get install -y sbcl
+sudo apt-get install -y sbcl
 
