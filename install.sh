@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+sudo -v
+
 DOTFILES_URL="https://github.com/MasonWilie/dotfiles.git"
 DOTFILES_DIR="${HOME}/.dotfiles"
 
