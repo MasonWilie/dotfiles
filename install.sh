@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-sudo -v
 
 DOTFILES_URL="https://github.com/MasonWilie/dotfiles.git"
 DOTFILES_DIR="${HOME}/.dotfiles"
@@ -47,8 +46,6 @@ main() {
 	fi
 
 	git clone $DOTFILES_URL $DOTFILES_DIR
-
-	apt-get install update
 
 	link_files
 	run_setups
