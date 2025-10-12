@@ -49,7 +49,7 @@
  '(font-lock-function-name-face ((t (:foreground "color-39"))))
  '(minibuffer-prompt ((t (:foreground "color-38")))))
 
- ;;; The following lines added by ql:add-to-init-file:
+;;; The following lines added by ql:add-to-init-file:
 #-quicklisp
 (let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
                                        (user-homedir-pathname))))
