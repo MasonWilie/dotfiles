@@ -52,3 +52,6 @@
 ;; Tab settings
 (setq-default indent-tabs-mode nil)
 (setq lisp-indent-offset 2)
+
+;; Display line numbers
+(global-display-line-numbers-mode t)
