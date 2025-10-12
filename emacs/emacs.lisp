@@ -49,3 +49,6 @@
  '(font-lock-function-name-face ((t (:foreground "color-39"))))
  '(minibuffer-prompt ((t (:foreground "color-38")))))
 
+;; Tab settings
+(setq-default indent-tabs-mode nil)
+(setq lisp-indent-offset 2)
