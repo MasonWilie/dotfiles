@@ -6,16 +6,16 @@ DOTFILES_URL="https://github.com/MasonWilie/dotfiles.git"
 DOTFILES_DIR="${HOME}/.dotfiles"
 
 link_files() {
-	pushd $HOME
-	
-	ln -sf ${DOTFILES_DIR}/emacs/emacs.lisp .emacs
-	ln -sf ${DOTFILES_DIR}/lisp/sbclrc.lisp .sbclrc
+	pushd "$HOME"
+
+	ln -sf "${DOTFILES_DIR}/emacs/emacs.lisp" .emacs
+	ln -sf "${DOTFILES_DIR}/lisp/sbclrc.lisp" .sbclrc
 
 	popd
 }
 
 run_setups() {
-    local DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
+    local DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
     
     echo "Searching for setup.sh files in $DOTFILES_DIR..."
     
@@ -42,10 +42,10 @@ run_setups() {
 
 main() {
 	if [ -d "$DOTFILES_DIR" ]; then
-		rm -rf $DOTFILES_DIR
+		rm -rf "$DOTFILES_DIR"
 	fi
 
-	git clone $DOTFILES_URL $DOTFILES_DIR
+	git clone "$DOTFILES_URL" "$DOTFILES_DIR"
 
 	link_files
 	run_setups
