@@ -13,7 +13,7 @@
   (package-refresh-contents))
 
 (mapc #'ensure-package-installed
-      '(sly paredit rainbow-delimiters darcula-theme))
+      '(sly paredit rainbow-delimiters darcula-theme company which-key projectile))
 
 ;;; Lisp Development
 (setq inferior-lisp-program "sbcl")
@@ -30,6 +30,9 @@
 ;; Rainbow delimiters for colorful parentheses
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
+;; Sly enhancements
+(setq sly-complete-symbol-function 'sly-flex-completions)
+
 ;;; Editor Settings
 ;; Disable backup and lock files
 (setq make-backup-files nil
@@ -43,12 +46,45 @@
 ;; Display line numbers
 (global-display-line-numbers-mode t)
 
+;; Show matching parentheses
+(show-paren-mode t)
+(setq show-paren-delay 0)
+
+;; Highlight current line
+(global-hl-line-mode t)
+
+;; Smoother scrolling
+(setq scroll-margin 3
+      scroll-conservatively 100000
+      scroll-preserve-screen-position t)
+
+;; Better default window splits
+(setq split-height-threshold nil
+      split-width-threshold 160)
+
+;; Yes/no becomes y/n
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+;; Recent files
+(recentf-mode t)
+(setq recentf-max-saved-items 50)
+
+;; Auto-completion with Company
+(add-hook 'after-init-hook 'global-company-mode)
+
+;; Which-key for keybinding hints
+(which-key-mode)
+
+;; Projectile for project management
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
 ;;; Theme
 (load-theme 'darcula t)
 
 ;;; Custom Settings
 (custom-set-variables
- '(package-selected-packages '(sly rainbow-delimiters paredit darcula-theme))
+ '(package-selected-packages '(sly rainbow-delimiters paredit darcula-theme company which-key projectile))
  '(warning-suppress-types '((comp))))
 
 (custom-set-faces
