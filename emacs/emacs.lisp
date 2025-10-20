@@ -1,20 +1,24 @@
-;; Add MELPA repository
+;;; Package Management
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
-;; Install sly if not already installed
-(unless (package-installed-p 'sly)
-  (package-refresh-contents)
-  (package-install 'sly))
+;; Auto-install packages
+(defun ensure-package-installed (package)
+  "Install PACKAGE if not already installed."
+  (unless (package-installed-p package)
+    (package-install package)))
 
-;; Configure SBCL
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(mapc #'ensure-package-installed
+      '(sly paredit rainbow-delimiters darcula-theme))
+
+;;; Lisp Development
 (setq inferior-lisp-program "sbcl")
 
-;; Optional: Enable paredit for balanced parentheses
-(unless (package-installed-p 'paredit)
-  (package-install 'paredit))
-
+;; Enable paredit for balanced parentheses
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
 (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
@@ -23,35 +27,30 @@
 (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
 
-;; Optional: Rainbow delimiters for colorful parentheses
-(unless (package-installed-p 'rainbow-delimiters)
-  (package-install 'rainbow-delimiters))
-
+;; Rainbow delimiters for colorful parentheses
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
-;; Disable backup files
-(setq make-backup-files nil)
-(setq auto-save-default nil)
-(setq create-lockfiles nil)
+;;; Editor Settings
+;; Disable backup and lock files
+(setq make-backup-files nil
+      auto-save-default nil
+      create-lockfiles nil)
 
-;; Install darcula-theme if not already installed
-(unless (package-installed-p 'darcula-theme)
-  (package-refresh-contents)
-  (package-install 'darcula-theme))
-
-;; Load the theme
-(load-theme 'darcula t)
-
-(custom-set-variables
- '(package-selected-packages '(ace-window sly rainbow-delimiters paredit))
- '(warning-suppress-types '((comp))))
-(custom-set-faces
- '(font-lock-function-name-face ((t (:foreground "color-39"))))
- '(minibuffer-prompt ((t (:foreground "color-38")))))
-
-;; Tab settings
+;; Indentation
 (setq-default indent-tabs-mode nil)
 (setq lisp-indent-offset 2)
 
 ;; Display line numbers
 (global-display-line-numbers-mode t)
+
+;;; Theme
+(load-theme 'darcula t)
+
+;;; Custom Settings
+(custom-set-variables
+ '(package-selected-packages '(sly rainbow-delimiters paredit darcula-theme))
+ '(warning-suppress-types '((comp))))
+
+(custom-set-faces
+ '(font-lock-function-name-face ((t (:foreground "color-39"))))
+ '(minibuffer-prompt ((t (:foreground "color-38")))))
