@@ -79,6 +79,15 @@
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
+;; Auto-indent buffer keybinding
+(defun indent-buffer ()
+  "Indent the entire buffer."
+  (interactive)
+  (save-excursion
+    (indent-region (point-min) (point-max) nil)))
+
+(global-set-key (kbd "C-c i") 'indent-buffer)
+
 ;;; Theme
 (load-theme 'darcula t)
 
