@@ -99,3 +99,6 @@
 (custom-set-faces
  '(font-lock-function-name-face ((t (:foreground "color-39"))))
  '(minibuffer-prompt ((t (:foreground "color-38")))))
+
+;; Auto refresh files
+(global-auto-revert-mode 1)
