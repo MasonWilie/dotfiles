@@ -39,6 +39,16 @@
       auto-save-default nil
       create-lockfiles nil)
 
+;; Disable auto-save list
+(setq auto-save-list-file-prefix nil)
+
+;; Disable custom file (prevents custom-set-variables writes)
+(setq custom-file null-device)
+
+;; Disable various cache files
+(setq url-configuration-directory null-device
+      bookmark-default-file null-device)
+
 ;; Indentation
 (setq-default indent-tabs-mode nil)
 (setq lisp-indent-offset 2)
@@ -65,9 +75,10 @@
 ;; Yes/no becomes y/n
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;; Recent files
+;; Recent files (save to /dev/null to avoid cache files)
 (recentf-mode t)
-(setq recentf-max-saved-items 50)
+(setq recentf-max-saved-items 50
+      recentf-save-file null-device)
 
 ;; Auto-completion with Company
 (add-hook 'after-init-hook 'global-company-mode)
@@ -78,6 +89,8 @@
 ;; Projectile for project management
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(setq projectile-cache-file null-device
+      projectile-known-projects-file null-device)
 
 ;; Auto-indent buffer keybinding
 (defun indent-buffer ()
