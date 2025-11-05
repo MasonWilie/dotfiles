@@ -33,6 +33,12 @@
 ;; Sly enhancements
 (setq sly-complete-symbol-function 'sly-flex-completions)
 
+;; Make Sly REPL scroll to show output
+(add-hook 'sly-mrepl-mode-hook
+          (lambda ()
+            (setq-local scroll-conservatively 101)
+            (goto-char (point-max))))
+
 ;;; Editor Settings
 ;; Disable backup and lock files
 (setq make-backup-files nil
