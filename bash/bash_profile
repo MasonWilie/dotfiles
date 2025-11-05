@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Show timestamps in history
+export HISTTIMEFORMAT="%F %T "
+
+# Source .bashrc if it exists
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi

@@ -10,6 +10,7 @@ link_files() {
 
 	ln -sf "${DOTFILES_DIR}/emacs/emacs.lisp" .emacs
 	ln -sf "${DOTFILES_DIR}/lisp/sbclrc.lisp" .sbclrc
+	ln -sf "${DOTFILES_DIR}/bash/bash_profile" .bash_profile
 
 	popd
 }
