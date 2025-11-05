@@ -39,6 +39,19 @@
             (setq-local scroll-conservatively 101)
             (goto-char (point-max))))
 
+;; Scroll REPL to bottom after compilation and other operations
+(defun my-sly-repl-scroll-to-bottom ()
+  "Scroll the REPL window to show the prompt at the bottom."
+  (when-let ((repl-buffer (sly-mrepl--find-buffer)))
+    (when-let ((repl-window (get-buffer-window repl-buffer)))
+      (with-selected-window repl-window
+        (goto-char (point-max))
+        (recenter -1)))))
+
+(add-hook 'sly-compilation-finished-hook #'my-sly-repl-scroll-to-bottom)
+(add-hook 'sly-mrepl-output-filter-functions
+          (lambda (string) (my-sly-repl-scroll-to-bottom) string))
+
 ;;; Editor Settings
 ;; Disable backup and lock files
 (setq make-backup-files nil
