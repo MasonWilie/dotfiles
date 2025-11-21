@@ -13,7 +13,7 @@
   (package-refresh-contents))
 
 (mapc #'ensure-package-installed
-      '(sly paredit rainbow-delimiters darcula-theme company which-key projectile flycheck flycheck-sly))
+      '(sly paredit rainbow-delimiters darcula-theme company which-key projectile flycheck))
 
 ;;; Lisp Development
 (setq inferior-lisp-program "sbcl")
@@ -53,17 +53,18 @@
           (lambda (string) (my-sly-repl-scroll-to-bottom) string))
 
 ;;; Flycheck - Real-time syntax checking
-(global-flycheck-mode)
+;; Only configure flycheck if it's installed
+(when (package-installed-p 'flycheck)
+  (global-flycheck-mode)
 
-;; Integrate Flycheck with Sly for Common Lisp
-(add-hook 'sly-mode-hook #'flycheck-mode)
-(require 'flycheck-sly)
-(flycheck-sly-setup)
+  ;; Keybindings for navigating errors
+  (global-set-key (kbd "C-c ! n") 'flycheck-next-error)
+  (global-set-key (kbd "C-c ! p") 'flycheck-previous-error)
+  (global-set-key (kbd "C-c ! l") 'flycheck-list-errors)
 
-;; Keybindings for navigating errors
-(global-set-key (kbd "C-c ! n") 'flycheck-next-error)
-(global-set-key (kbd "C-c ! p") 'flycheck-previous-error)
-(global-set-key (kbd "C-c ! l") 'flycheck-list-errors)
+  ;; Enable flycheck in Lisp modes
+  (add-hook 'lisp-mode-hook #'flycheck-mode)
+  (add-hook 'emacs-lisp-mode-hook #'flycheck-mode))
 
 ;;; Editor Settings
 ;; Disable backup and lock files
@@ -138,7 +139,7 @@
 
 ;;; Custom Settings
 (custom-set-variables
- '(package-selected-packages '(sly rainbow-delimiters paredit darcula-theme company which-key projectile flycheck flycheck-sly))
+ '(package-selected-packages '(sly rainbow-delimiters paredit darcula-theme company which-key projectile flycheck))
  '(warning-suppress-types '((comp))))
 
 (custom-set-faces
